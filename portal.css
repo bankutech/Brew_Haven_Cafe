@@ -1,0 +1,194 @@
+/* portal.css - BrewVerse Master Portal Styles */
+
+.portal-body {
+  margin: 0;
+  padding: 0;
+  background-color: #0d0a08;
+  color: #fff;
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+.portal-grain {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.portal-header-nav {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  padding: 20px 0;
+  z-index: 100;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.portal-main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  z-index: 10;
+}
+
+.portal-hero {
+  text-align: center;
+  padding: 120px 20px 60px;
+}
+
+.portal-title {
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  margin-bottom: 10px;
+  background: linear-gradient(to right, #C59B27, #f5d17a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.portal-subtitle {
+  font-size: 1.2rem;
+  color: #D1C4B9;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.portal-cards-container {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  gap: 2px;
+  padding: 0 20px 40px;
+}
+
+.portal-card {
+  flex: 1;
+  position: relative;
+  border-radius: 32px;
+  overflow: hidden;
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.portal-card:hover {
+  flex: 1.2;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(197, 155, 39, 0.1);
+  transform: translateY(-5px);
+}
+
+.card-bg {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.4) saturate(0.8);
+  transition: all 0.5s ease;
+  z-index: 1;
+}
+
+.portal-card:hover .card-bg {
+  filter: brightness(0.6) saturate(1.1);
+  transform: scale(1.05);
+}
+
+.card-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 40px;
+  max-width: 400px;
+}
+
+.portal-icon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #C59B27;
+}
+
+.card-content h2 {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.card-content p {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  opacity: 0.9;
+}
+
+.portal-btn {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s ease;
+  border-color: #C59B27;
+}
+
+.portal-card:hover .portal-btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .portal-cards-container {
+    flex-direction: column;
+  }
+  .portal-title {
+    font-size: 2.5rem;
+  }
+  .portal-card {
+    min-height: 40vh;
+  }
+}
+
+/* Ensure buttons are visible on touch devices */
+@media (hover: none) {
+  .portal-btn {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+}
+
+/* Shared Cart Item Styles for Restaurant Drawer */
+.cart-item-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+.cart-item-row-info {
+  flex: 1;
+}
+.cart-item-row-title {
+  margin: 0;
+  font-family: var(--font-body);
+}
+.cart-item-row-type {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+.cart-item-row-price {
+  font-size: 0.85rem;
+  color: var(--accent-gold);
+}
+.cart-item-row-qty {
+  font-weight: bold;
+}

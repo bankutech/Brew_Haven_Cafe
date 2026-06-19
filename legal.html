@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Legal & Policies - Brew Haven</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    body {
+      padding-top: 100px; /* space for fixed header */
+    }
+    .legal-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    .legal-section {
+      background: var(--surface-color);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      margin-bottom: 40px;
+      border: 1px solid var(--border-color);
+    }
+    .dark-mode .legal-section {
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    .legal-section h2 {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+      border-bottom: 2px solid var(--accent-gold);
+      padding-bottom: 15px;
+    }
+    .legal-section h3 {
+      font-size: 1.5rem;
+      margin-top: 30px;
+      margin-bottom: 15px;
+      color: var(--text-main);
+    }
+    .legal-section p, .legal-section ul {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+    .legal-section ul {
+      padding-left: 20px;
+    }
+    .legal-section li {
+      margin-bottom: 10px;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 30px;
+      font-weight: 500;
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .back-btn:hover {
+      color: var(--accent-gold);
+    }
+    .sitemap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+    .sitemap-col {
+      padding: 24px;
+    }
+    .sitemap-col h3 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      color: var(--primary-color);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+    }
+    .sitemap-col ul {
+      list-style: none;
+      padding: 0;
+    }
+    .sitemap-col li {
+      margin-bottom: 12px;
+    }
+    .sitemap-col a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .sitemap-col a:hover {
+      color: var(--accent-gold);
+    }
+  </style>
+</head>
+<body class="light-mode">
+
+  <header class="main-header scrolled" id="main-header" style="background: var(--surface-color); border-bottom: 1px solid var(--border-color);">
+    <div class="nav-container container">
+      <div class="logo">
+        <a href="index.html" style="text-decoration: none; color: inherit;">
+          <i class="fa-solid fa-mug-hot logo-icon"></i> Brew Haven
+        </a>
+      </div>
+      <div class="nav-controls">
+        <a href="cafe.html" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.85rem;">Back to Cafe</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="legal-container">
+    
+    <a href="cafe.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Return to Cafe</a>
+
+    <!-- Privacy Policy Section -->
+    <section id="privacy" class="legal-section">
+      <h2>Privacy Policy</h2>
+      <p><strong>Last Updated: June 2026</strong></p>
+      <p>At Brew Haven Café, we respect your privacy and are committed to protecting your personal data. This privacy policy will inform you as to how we look after your personal data when you visit our website (regardless of where you visit it from) and tell you about your privacy rights and how the law protects you.</p>
+      
+      <h3>1. Data We Collect</h3>
+      <p>We may collect, use, store and transfer different kinds of personal data about you which we have grouped together as follows:</p>
+      <ul>
+        <li><strong>Identity Data</strong> includes first name, last name, username or similar identifier.</li>
+        <li><strong>Contact Data</strong> includes billing address, delivery address, email address and telephone numbers.</li>
+        <li><strong>Transaction Data</strong> includes details about payments to and from you and other details of products and services you have purchased from us.</li>
+      </ul>
+
+      <h3>2. How We Use Your Data</h3>
+      <p>We will only use your personal data when the law allows us to. Most commonly, we will use your personal data to process your coffee orders, manage our loyalty program, and send you our newsletter (if subscribed).</p>
+
+      <h3>3. Data Security</h3>
+      <p>We have put in place appropriate security measures to prevent your personal data from being accidentally lost, used or accessed in an unauthorised way, altered or disclosed.</p>
+    </section>
+
+    <!-- Terms of Service Section -->
+    <section id="terms" class="legal-section">
+      <h2>Terms of Service</h2>
+      <p><strong>Last Updated: June 2026</strong></p>
+      <p>Welcome to Brew Haven Café. By accessing this website, we assume you accept these terms and conditions. Do not continue to use Brew Haven if you do not agree to take all of the terms and conditions stated on this page.</p>
+
+      <h3>1. License</h3>
+      <p>Unless otherwise stated, Brew Haven Café and/or its licensors own the intellectual property rights for all material on Brew Haven. All intellectual property rights are reserved. You may access this from Brew Haven for your own personal use subjected to restrictions set in these terms and conditions.</p>
+      
+      <h3>2. User Comments and Reviews</h3>
+      <p>Parts of this website offer an opportunity for users to post and exchange opinions and information. Brew Haven Café does not filter, edit, publish or review Comments prior to their presence on the website. Comments do not reflect the views and opinions of Brew Haven Café, its agents and/or affiliates.</p>
+
+      <h3>3. Product Availability and Pricing</h3>
+      <p>All products are subject to availability. We reserve the right to discontinue any product at any time. Prices for our products are subject to change without notice.</p>
+    </section>
+
+    <!-- Sitemap Section -->
+    <section id="sitemap" class="legal-section">
+      <h2>Website Sitemap</h2>
+      <p>Navigate quickly through the Brew Haven platform.</p>
+      
+      <div class="sitemap-grid">
+        <div class="sitemap-col">
+          <h3>Main Pages</h3>
+          <ul>
+            <li><a href="index.html">Portal Home</a></li>
+            <li><a href="cafe.html">Brew Haven Cafe</a></li>
+            <li><a href="restaurant.html">SARAVALA</a></li>
+          </ul>
+        </div>
+        
+        <div class="sitemap-col">
+          <h3>Cafe Links</h3>
+          <ul>
+            <li><a href="cafe.html#about">Our Story</a></li>
+            <li><a href="cafe.html#menu">Café Menu</a></li>
+            <li><a href="cafe.html#shop">Bean Shop</a></li>
+            <li><a href="cafe.html#customizer">Brew Lab</a></li>
+            <li><a href="cafe.html#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="sitemap-col">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="legal.html#privacy">Privacy Policy</a></li>
+            <li><a href="legal.html#terms">Terms of Service</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="main-footer">
+    <div class="container footer-content" style="text-align: center; color: var(--text-muted); font-size: 0.9rem; padding: 20px 0;">
+      <p>&copy; 2026 Brew Haven Elite. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

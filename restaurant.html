@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Saravala | World-Class Fine Dining</title>
+  <meta name="description" content="Saravala — a Michelin-starred, world-class fine dining destination. Book a table, explore our seasonal menu, and experience culinary perfection.">
+  <link rel="stylesheet" href="aurum.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════ -->
+  <header class="aurum-header" id="main-header">
+    <div class="container aurum-nav-inner">
+      <div class="aurum-logo">
+        <a href="index.html" title="Back to Portal" id="btn-back-portal"><i class="fas fa-th"></i></a>
+        SARAVALA
+      </div>
+      <nav class="aurum-nav-links" id="main-nav">
+        <a href="#menu" onclick="closeNav()">Menu</a>
+        <a href="#reservations" onclick="closeNav()">Reservations</a>
+        <a href="#chef-profiles" onclick="closeNav()">Our Chef</a>
+        <a href="#catering" onclick="closeNav()">Events</a>
+        <a href="#contact" onclick="closeNav()">Contact</a>
+      </nav>
+      <div class="aurum-nav-actions">
+        <button class="aurum-btn" id="btn-nav-book" onclick="openReservationModal()">Book a Table</button>
+        <button type="button" class="aurum-hamburger" id="nav-toggle" aria-label="Toggle Menu" onclick="toggleNav(event)">
+          <i class="fas fa-bars" id="hamburger-icon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════ -->
+  <section class="aurum-hero">
+    <div class="aurum-hero-bg"></div>
+    <div class="aurum-hero-overlay"></div>
+    <div class="aurum-hero-content">
+      <span class="aurum-hero-subtitle">An Unforgettable Culinary Journey</span>
+      <h1 class="aurum-hero-title">Saravala</h1>
+      <p class="aurum-hero-desc">Experience a symphony of flavors curated by Michelin-starred visionaries. A world-class dining destination where every plate is a masterpiece.</p>
+      <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+        <button class="aurum-btn filled" id="btn-hero-book" onclick="openReservationModal()">Book a Table</button>
+        <a href="#menu" class="aurum-btn" id="btn-hero-menu">Discover the Menu</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating Reserve Button -->
+  <button class="floating-reserve-btn" id="btn-floating-reserve" onclick="openReservationModal()">
+    <i class="fas fa-calendar-alt"></i> Reserve
+  </button>
+
+  <!-- Daily Specials Banner -->
+  <div class="aurum-specials-banner">
+    <i class="fas fa-star"></i> Tonight's Exclusive Pour: 1996 Dom Pérignon Oenothèque by the glass. Extremely limited.
+    <button onclick="openReservationModal()" id="btn-banner-reserve" style="background:none; border:none; color:#000; font-weight:700; text-decoration:underline; cursor:pointer; margin-left:12px; font-size: inherit;">Reserve Now</button>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       MENU
+  ═══════════════════════════════════════ -->
+  <section id="menu" class="restaurant-menu">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Exquisite Tastes</span>
+        <h2 class="section-title">Evening Dining</h2>
+        <p style="color: rgba(253,251,247,0.6);">Carefully sourced ingredients, masterful preparation.</p>
+      </div>
+
+      <!-- Signature Showcase -->
+      <div class="signature-showcase">
+        <h3><i class="fas fa-crown"></i> Chef's Signature Dish</h3>
+        <div class="signature-inner">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=300&q=80" alt="Golden Osso Buco">
+          <div class="signature-info">
+            <h3>Golden Osso Buco</h3>
+            <p>Slow-braised veal shank with saffron risotto and gremolata. Paired with Barolo, Piedmont.</p>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px;">
+              <button class="aurum-btn filled" id="btn-signature-reserve" onclick="openReservationModal()" style="padding: 10px 24px; font-size: 0.85rem;">Reserve to Taste</button>
+              <button class="aurum-btn" id="btn-signature-details" onclick="showDishDetails('Golden Osso Buco', '₹5395', 'Slow-braised veal shank, saffron risotto, gremolata. Wine Pairing: Barolo, Piedmont.')" style="padding: 10px 24px; font-size: 0.85rem;">View Details</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Menu Tabs -->
+      <div class="menu-tabs" role="tablist">
+        <button class="tab-btn active" data-filter="all" id="tab-all" role="tab" aria-controls="restaurant-menu-grid" aria-selected="true">All</button>
+        <button class="tab-btn" data-filter="starters" id="tab-starters" role="tab" aria-controls="restaurant-menu-grid" aria-selected="false">Starters</button>
+        <button class="tab-btn" data-filter="mains" id="tab-mains" role="tab" aria-controls="restaurant-menu-grid" aria-selected="false">Main Courses</button>
+        <button class="tab-btn" data-filter="desserts" id="tab-desserts" role="tab" aria-controls="restaurant-menu-grid" aria-selected="false">Desserts</button>
+        <button class="tab-btn" data-filter="specials" id="tab-specials" role="tab" aria-controls="restaurant-menu-grid" aria-selected="false">Chef Specials</button>
+        <button class="tab-btn" data-filter="family" id="tab-family" role="tab" aria-controls="restaurant-menu-grid" aria-selected="false">Family Dining</button>
+      </div>
+
+      <!-- Menu Grid -->
+      <div class="menu-grid" id="restaurant-menu-grid" role="tabpanel" aria-label="Menu Items">
+
+        <div class="menu-card menu-item" data-category="mains">
+          <div class="menu-card-img-wrapper">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=600&q=80" alt="Wagyu Filet Mignon">
+            <span class="menu-card-price">₹3984</span>
+          </div>
+          <div class="menu-card-content">
+            <h3>Wagyu Filet Mignon</h3>
+            <p>Truffle mashed potatoes, asparagus, red wine reduction.</p>
+            <div class="wine-pairing"><i class="fas fa-wine-glass-alt"></i> Pairing: <em>Cabernet Sauvignon, Napa</em></div>
+            <div class="menu-badges">
+              <span><i class="fas fa-fire" style="color:#ff5722;"></i> 850 kcal</span>
+              <span class="badge-gf">🌿 GF</span>
+            </div>
+            <button class="menu-reserve-btn" onclick="openReservationModal()" id="btn-menu-wagyu">Reserve to Order</button>
+          </div>
+        </div>
+
+        <div class="menu-card menu-item" data-category="mains">
+          <div class="menu-card-img-wrapper">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=600&q=80" alt="Pan-Seared Salmon">
+            <span class="menu-card-price">₹2988</span>
+          </div>
+          <div class="menu-card-content">
+            <h3>Pan-Seared Salmon</h3>
+            <p>Lemon butter caper sauce, quinoa, roasted vegetables.</p>
+            <div class="wine-pairing"><i class="fas fa-wine-glass-alt"></i> Pairing: <em>Chardonnay, Napa Valley</em></div>
+            <div class="menu-badges">
+              <span><i class="fas fa-fire" style="color:#ff5722;"></i> 650 kcal</span>
+              <span class="badge-protein">💪 Protein+</span>
+            </div>
+            <button class="menu-reserve-btn" onclick="openReservationModal()" id="btn-menu-salmon">Reserve to Order</button>
+          </div>
+        </div>
+
+        <div class="menu-card menu-item" data-category="starters">
+          <div class="menu-card-img-wrapper">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" alt="Heirloom Caprese">
+            <span class="menu-card-price">₹1494</span>
+          </div>
+          <div class="menu-card-content">
+            <h3>Heirloom Caprese</h3>
+            <p>Burrata cheese, ripe heirloom tomatoes, wild basil, aged balsamic.</p>
+            <div class="wine-pairing"><i class="fas fa-wine-glass-alt"></i> Pairing: <em>Pinot Grigio, Veneto</em></div>
+            <div class="menu-badges">
+              <span><i class="fas fa-fire" style="color:#ff5722;"></i> 320 kcal</span>
+              <span class="badge-v">🥗 Vegetarian</span>
+              <span class="badge-gf">🌿 GF</span>
+            </div>
+            <button class="menu-reserve-btn" onclick="openReservationModal()" id="btn-menu-caprese">Reserve to Order</button>
+          </div>
+        </div>
+
+        <div class="menu-card menu-item" data-category="starters">
+          <div class="menu-card-img-wrapper">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1510130387422-82bed34b37e9?auto=format&fit=crop&w=600&q=80" alt="Truffle Arancini">
+            <span class="menu-card-price">₹1826</span>
+          </div>
+          <div class="menu-card-content">
+            <h3>Black Truffle Arancini</h3>
+            <p>Crispy risotto balls, black truffle, aged parmesan, saffron aioli.</p>
+            <div class="wine-pairing"><i class="fas fa-wine-glass-alt"></i> Pairing: <em>Champagne Brut, Reims</em></div>
+            <div class="menu-badges">
+              <span><i class="fas fa-fire" style="color:#ff5722;"></i> 480 kcal</span>
+              <span class="badge-v">🥗 Vegetarian</span>
+            </div>
+            <button class="menu-reserve-btn" onclick="openReservationModal()" id="btn-menu-arancini">Reserve to Order</button>
+          </div>
+        </div>
+
+        <div class="menu-card menu-item" data-category="desserts">
+          <div class="menu-card-img-wrapper">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=600&q=80" alt="Molten Lava">
+            <span class="menu-card-price">₹1162</span>
+          </div>
+          <div class="menu-card-content">
+            <h3>Decadent Molten Lava</h3>
+            <p>Warm chocolate cake with lava core, fresh raspberries, vanilla bean gelato.</p>
+            <div class="wine-pairing"><i class="fas fa-wine-glass-alt"></i> Pairing: <em>Tawny Port, Portugal 10yr</em></div>
+            <div class="menu-badges">
+              <span><i class="fas fa-fire" style="color:#ff5722;"></i> 950 kcal</span>
+              <span class="badge-special">⭐ Must Try</span>
+            </div>
+            <button class="menu-reserve-btn" onclick="openReservationModal()" id="btn-menu-lava">Reserve to Order</button>
+          </div>
+        </div>
+
+        <div class="menu-card menu-item" data-category="specials">
+          <div class="menu-card-img-wrapper">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80" alt="Golden Osso Buco">
+            <span class="menu-card-price">₹5395</span>
+          </div>
+          <div class="menu-card-content">
+            <h3>Golden Osso Buco</h3>
+            <p>Slow-braised veal shank with saffron risotto and gremolata.</p>
+            <div class="wine-pairing"><i class="fas fa-wine-glass-alt"></i> Pairing: <em>Barolo, Piedmont</em></div>
+            <div class="menu-badges">
+              <span><i class="fas fa-crown" style="color:var(--aurum-gold);"></i> Chef's Special</span>
+            </div>
+            <button class="menu-reserve-btn" onclick="openReservationModal()" id="btn-menu-osso">Reserve to Order</button>
+          </div>
+        </div>
+
+        <div class="menu-card menu-item" data-category="family">
+          <div class="menu-card-img-wrapper">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1414235077428-971145504d60?auto=format&fit=crop&w=600&q=80" alt="Family Feast">
+            <span class="menu-card-price">₹9960</span>
+          </div>
+          <div class="menu-card-content">
+            <h3>Family Feast Platter</h3>
+            <p>Serves 4. Whole roasted chicken, large pasta, 4 sides, and a family-sized dessert.</p>
+            <div class="menu-badges">
+              <span>👨‍👩‍👧‍👦 Serves 4</span>
+            </div>
+            <button class="menu-reserve-btn" onclick="openReservationModal()" id="btn-menu-family">Reserve to Order</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       EXPERIENCE PLANNER
+  ═══════════════════════════════════════ -->
+  <section class="aurum-planner-section" id="experience-planner">
+    <div class="container">
+      <div class="planner-box">
+        <h2 style="font-family: var(--aurum-font-display); color: var(--aurum-gold); margin-bottom: 15px;">Build Your Dining Experience</h2>
+        <p style="color: rgba(253,251,247,0.7); margin-bottom: 30px;">Tell us what you desire, and our concierge will curate the perfect evening.</p>
+        <div class="planner-grid">
+          <div class="planner-step">
+            <label>Occasion</label>
+            <select class="aurum-select" id="planner-occasion">
+              <option>Romantic Anniversary</option>
+              <option>Business Dinner</option>
+              <option>Birthday Celebration</option>
+              <option>Proposal Evening</option>
+              <option>Corporate Banquet</option>
+            </select>
+          </div>
+          <div class="planner-step">
+            <label>Seating Preference</label>
+            <select class="aurum-select" id="planner-seating">
+              <option>Private Cellar (Intimate)</option>
+              <option>Rooftop Terrace (Scenic)</option>
+              <option>Chef's Table (Interactive)</option>
+              <option>Main Dining Room</option>
+            </select>
+          </div>
+          <div class="planner-step">
+            <label>Cuisine Style</label>
+            <select class="aurum-select" id="planner-cuisine">
+              <option>7-Course Tasting Menu</option>
+              <option>A La Carte</option>
+              <option>Sommelier's Wine Pairing</option>
+              <option>Chef's Surprise Menu</option>
+            </select>
+          </div>
+          <div class="planner-step" style="display: flex; align-items: flex-end;">
+            <button class="aurum-btn filled" id="btn-curate" onclick="curateEvening()" style="width: 100%; padding: 14px; text-align: center;">Curate My Evening</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       AMBIENCE EXPLORER
+  ═══════════════════════════════════════ -->
+  <section class="aurum-ambience-section" id="ambience">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Set The Mood</span>
+        <h2 class="section-title">Ambience Explorer</h2>
+        <p style="color: rgba(253,251,247,0.7);">Discover the perfect atmosphere for your occasion.</p>
+      </div>
+      <div class="ambience-gallery">
+        <div class="ambience-card" onclick="selectAmbience('Rooftop Terrace')" id="btn-ambience-rooftop">
+          <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=800&q=80" alt="Rooftop Terrace">
+          <div class="ambience-overlay">
+            <h3>The Rooftop Terrace</h3>
+            <p>Panoramic city views under the stars.</p>
+            <button class="aurum-btn" style="margin-top: 12px; padding: 8px 20px; font-size: 0.8rem;" onclick="event.stopPropagation(); openReservationModal()">Book This Space</button>
+          </div>
+        </div>
+        <div class="ambience-card" onclick="selectAmbience('Private Cellar')" id="btn-ambience-cellar">
+          <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=800&q=80" alt="Private Cellar">
+          <div class="ambience-overlay">
+            <h3>The Private Cellar</h3>
+            <p>Intimate dining surrounded by vintage wines.</p>
+            <button class="aurum-btn" style="margin-top: 12px; padding: 8px 20px; font-size: 0.8rem;" onclick="event.stopPropagation(); openReservationModal()">Book This Space</button>
+          </div>
+        </div>
+        <div class="ambience-card" onclick="selectAmbience('Chef\'s Table')" id="btn-ambience-chef">
+          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" alt="Chef's Table">
+          <div class="ambience-overlay">
+            <h3>The Chef's Table</h3>
+            <p>Front-row seats to culinary mastery.</p>
+            <button class="aurum-btn" style="margin-top: 12px; padding: 8px 20px; font-size: 0.8rem;" onclick="event.stopPropagation(); openReservationModal()">Book This Space</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       TABLE RESERVATIONS
+  ═══════════════════════════════════════ -->
+  <section id="reservations" class="reservation-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Plan Your Evening</span>
+        <h2 class="section-title">Table Reservations</h2>
+      </div>
+      <div class="reservation-grid">
+        <div class="reservation-info">
+          <h3 style="color: var(--aurum-gold); margin-bottom: 15px;">Interactive Table Selection</h3>
+          <p style="color: rgba(253,251,247,0.7); margin-bottom: 20px;">Choose your preferred seating arrangement. Gold = selected. Grey = available.</p>
+          <div class="table-map">
+            <div class="table-map-label top"><i class="fas fa-sun"></i> Window Seats</div>
+            <div class="table-map-label bottom"><i class="fas fa-cocktail"></i> Bar Area</div>
+            <!-- Window Seats (Top) -->
+            <button class="table-btn selected" id="table-T1" onclick="selectTable('T1')" style="top: 15%; left: 10%;">T1</button>
+            <button class="table-btn" id="table-T2" onclick="selectTable('T2')" style="top: 15%; left: 30%;">T2</button>
+            <button class="table-btn" id="table-T3" onclick="selectTable('T3')" style="top: 15%; left: 50%;">T3</button>
+            <button class="table-btn" id="table-T4" onclick="selectTable('T4')" style="top: 15%; left: 70%;">T4</button>
+            
+            <!-- Booths (Middle) -->
+            <button class="table-btn booth" id="table-BoothA" onclick="selectTable('Booth A')" style="top: 45%; left: 20%;">Booth A</button>
+            <button class="table-btn booth" id="table-BoothB" onclick="selectTable('Booth B')" style="top: 45%; left: 55%;">Booth B</button>
+            
+            <!-- Bar Area (Bottom) -->
+            <button class="table-btn bar" id="table-Bar1" onclick="selectTable('Bar 1')" style="bottom: 12%; left: 10%;">Bar 1</button>
+            <button class="table-btn bar" id="table-Bar2" onclick="selectTable('Bar 2')" style="bottom: 12%; left: 35%;">Bar 2</button>
+            <button class="table-btn bar" id="table-Bar3" onclick="selectTable('Bar 3')" style="bottom: 12%; left: 60%;">Bar 3</button>
+          </div>
+          <p style="font-size:0.8rem; color:#666; margin-top: 10px;" id="table-selection-hint">Selected: <strong id="selected-table-label">Table T1</strong></p>
+          
+
+        </div>
+
+        <form class="reservation-form" id="reservation-form-main" onsubmit="submitReservation(event)">
+          <div class="rform-group">
+            <label>Booking Type</label>
+            <select class="menu-search-input" id="booking-type">
+              <option value="fine-dining">Fine Dining</option>
+              <option value="group">Group Reservation (6+)</option>
+              <option value="buffet">Weekend Buffet</option>
+              <option value="tasting">7-Course Tasting Menu</option>
+            </select>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div class="rform-group">
+              <label>Your Name</label>
+              <input type="text" class="menu-search-input" id="res-name" placeholder="Full Name" required>
+            </div>
+            <div class="rform-group">
+              <label>Phone Number</label>
+              <input type="tel" class="menu-search-input" id="res-phone" placeholder="+91 95209 16065" required>
+            </div>
+          </div>
+          <div class="rform-group">
+            <label>Email Address</label>
+            <input type="email" class="menu-search-input" id="res-email" placeholder="your@email.com" required>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
+            <div class="rform-group">
+              <label>Date</label>
+              <input type="date" class="menu-search-input" id="res-date" required>
+            </div>
+            <div class="rform-group">
+              <label>Time</label>
+              <select class="menu-search-input" id="res-time">
+                <option>17:00 PM</option>
+                <option>18:00 PM</option>
+                <option selected>19:00 PM</option>
+                <option>20:00 PM</option>
+                <option>21:00 PM</option>
+              </select>
+            </div>
+            <div class="rform-group">
+              <label>Guests</label>
+              <input type="number" class="menu-search-input" id="res-guests" min="1" max="20" value="2" required>
+            </div>
+          </div>
+          <div class="rform-group">
+            <label>Special Requests</label>
+            <input type="text" class="menu-search-input" id="res-notes" placeholder="Allergies, anniversary, etc.">
+          </div>
+          <button type="submit" id="btn-confirm-booking" class="aurum-btn filled" style="width: 100%; text-align:center; padding: 15px; font-size: 1rem; margin-top: 5px;">
+            <i class="fas fa-calendar-check"></i> Confirm Reservation
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       PRIVATE EVENTS & CATERING
+  ═══════════════════════════════════════ -->
+  <section id="catering" class="reservation-section" style="background: var(--aurum-dark); padding: 100px 0;">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Celebrate With Us</span>
+        <h2 class="section-title">Events & Catering</h2>
+        <p style="color: rgba(253,251,247,0.6);">From intimate gatherings to grand celebrations, we deliver perfection.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 50px;">
+        <div class="menu-card" style="text-align: center; padding: 40px 30px; display: flex; flex-direction: column;">
+          <i class="fas fa-ring" style="font-size: 3rem; color: var(--aurum-gold); margin-bottom: 20px; display:block;"></i>
+          <h3 style="color: var(--aurum-ivory); margin-bottom: 15px;">Wedding Catering</h3>
+          <p style="color: rgba(253,251,247,0.6); margin-bottom: 25px; line-height:1.7;">Customized multi-course menus and dedicated sommelier services for your special day.</p>
+          <button class="aurum-btn" id="btn-wedding" onclick="openWeddingModal()" style="padding: 10px 24px; margin-top: auto;">View Packages</button>
+        </div>
+        <div class="menu-card" style="text-align: center; padding: 40px 30px; display: flex; flex-direction: column;">
+          <i class="fas fa-building" style="font-size: 3rem; color: var(--aurum-gold); margin-bottom: 20px; display:block;"></i>
+          <h3 style="color: var(--aurum-ivory); margin-bottom: 15px;">Corporate Banquets</h3>
+          <p style="color: rgba(253,251,247,0.6); margin-bottom: 25px; line-height:1.7;">Impress clients with our exclusive private dining room and AV-equipped banquet hall.</p>
+          <button class="aurum-btn" id="btn-corporate" onclick="openCorporateModal()" style="padding: 10px 24px; margin-top: auto;">Request Quote</button>
+        </div>
+        <div class="menu-card" style="text-align: center; padding: 40px 30px; display: flex; flex-direction: column; border-color: var(--aurum-gold);">
+          <i class="fas fa-birthday-cake" style="font-size: 3rem; color: var(--aurum-gold); margin-bottom: 20px; display:block;"></i>
+          <h3 style="color: var(--aurum-ivory); margin-bottom: 15px;">Private Celebrations</h3>
+          <p style="color: rgba(253,251,247,0.6); margin-bottom: 25px; line-height:1.7;">Birthdays, proposals, and milestone events curated with bespoke menus and florals.</p>
+          <button class="aurum-btn" id="btn-celebration" onclick="openCelebrationModal()" style="padding: 10px 24px; margin-top: auto; width: 100%;">Plan Your Event</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       SUSTAINABILITY
+  ═══════════════════════════════════════ -->
+  <section class="aurum-sustainability" id="sustainability">
+    <div class="container" style="display:flex; gap: 60px; align-items: center; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 300px;">
+        <span class="section-subtitle">Our Philosophy</span>
+        <h2 class="section-title" style="font-family: var(--aurum-font-display); margin-bottom: 20px;">Rooted in Nature</h2>
+        <p style="color: rgba(253,251,247,0.7); line-height: 1.9; margin-bottom: 30px;">At Saravala, luxury does not come at the expense of the earth. We proudly partner with over 40 local, regenerative farms to bring you flavors that are as ethical as they are extraordinary.</p>
+        <a href="#ingredient-map" class="aurum-btn" id="btn-purveyors">Meet the Purveyors</a>
+      </div>
+      <div style="flex: 1; min-width: 300px; position: relative;">
+        <div style="position: absolute; top: -15px; left: -15px; width: 100%; height: 100%; border: 1px solid var(--aurum-gold); border-radius: 12px; z-index: 1;"></div>
+        <img src="assets/farm-to-table.png" alt="Farm to Table" style="width: 100%; border-radius: 12px; position: relative; z-index: 2; box-shadow: 0 15px 40px rgba(0,0,0,0.6); display: block;">
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       GLOBAL SOURCING MAP
+  ═══════════════════════════════════════ -->
+  <section class="aurum-ingredient-map" id="ingredient-map">
+    <div class="container" style="text-align: center;">
+      <span class="section-subtitle">Where Quality Begins</span>
+      <h2 class="section-title" style="margin-bottom: 15px;">Global Sourcing Map</h2>
+      <p style="color: rgba(253,251,247,0.7); margin-bottom: 50px;">Hover over our global hotspots to trace the journey of our signature ingredients.</p>
+      <div class="map-container" aria-hidden="true">
+        <div class="map-hotspot" style="top: 30%; left: 52%;">
+          <div class="hotspot-pulse"></div>
+          <div class="hotspot-tooltip"><strong>Alba, Italy</strong><p>White Truffles</p></div>
+        </div>
+        <div class="map-hotspot" style="top: 40%; left: 85%;">
+          <div class="hotspot-pulse"></div>
+          <div class="hotspot-tooltip"><strong>Kagoshima, Japan</strong><p>A5 Wagyu Beef</p></div>
+        </div>
+        <div class="map-hotspot" style="top: 60%; left: 25%;">
+          <div class="hotspot-pulse"></div>
+          <div class="hotspot-tooltip"><strong>Oaxaca, Mexico</strong><p>Heirloom Cacao</p></div>
+        </div>
+        <div class="map-hotspot" style="top: 20%; left: 38%;">
+          <div class="hotspot-pulse"></div>
+          <div class="hotspot-tooltip"><strong>Champagne, France</strong><p>Dom Pérignon Grapes</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       VIRTUAL TOUR GALLERY
+  ═══════════════════════════════════════ -->
+  <section class="aurum-virtual-tour" id="virtual-tour">
+    <div class="container">
+      <div class="section-header" style="text-align: center; margin-bottom: 50px;">
+        <span class="section-subtitle">Immersive Experience</span>
+        <h2 class="section-title">Virtual Tour</h2>
+      </div>
+      <div class="masonry-gallery">
+        <div class="masonry-item tall"><img loading="lazy" src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=800&q=80" alt="Wine"></div>
+        <div class="masonry-item"><img loading="lazy" src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=800&q=80" alt="Cellar"></div>
+        <div class="masonry-item wide"><img loading="lazy" src="https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=800&q=80" alt="Dining Room"></div>
+        <div class="masonry-item"><img loading="lazy" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" alt="Chef Table"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       CULINARY TIMELINE
+  ═══════════════════════════════════════ -->
+  <section class="aurum-timeline-section" id="timeline">
+    <div class="container">
+      <h2 style="font-family: var(--aurum-font-display); color: var(--aurum-gold); margin-bottom: 60px; text-align: center; font-size: 2.5rem;">The Saravala Journey</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content"><h3 style="color:var(--aurum-gold);">2018</h3><p>Saravala is born, introducing a new era of fine dining in the city.</p></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content"><h3 style="color:var(--aurum-gold);">2020</h3><p>Chef Alessandro joins, bringing 20+ years of Michelin-starred experience from Paris and Tokyo.</p></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content"><h3 style="color:var(--aurum-gold);">2021</h3><p>Awarded our first Michelin Star for unparalleled innovation and consistency.</p></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content"><h3 style="color:var(--aurum-gold);">2024</h3><p>Ranked Top 10 in the World's 50 Best Restaurants. Three Michelin Stars achieved.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       CHEF PROFILE
+  ═══════════════════════════════════════ -->
+  <section id="chef-profiles" class="reservation-section" style="padding: 100px 0; background: var(--aurum-dark);">
+    <div class="container">
+      <div style="display: flex; gap: 60px; align-items: center; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 300px;">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=800&q=80" alt="Executive Chef Alessandro" style="width: 100%; border-radius: 12px; box-shadow: 0 15px 40px rgba(0,0,0,0.6); border: 1px solid rgba(197,155,39,0.3);">
+        </div>
+        <div style="flex: 1; min-width: 300px;">
+          <span class="section-subtitle">Culinary Mastermind</span>
+          <h2 class="section-title" style="text-align: left; margin-bottom: 20px;">Executive Chef Alessandro</h2>
+          <p style="color: rgba(253,251,247,0.7); margin-bottom: 20px; line-height: 1.9;">With over two decades of experience spanning Michelin-starred kitchens in Paris and Tokyo, Chef Alessandro brings a philosophy of <em>"uncompromised purity"</em> to every plate.</p>
+          <p style="color: rgba(253,251,247,0.7); margin-bottom: 35px; line-height: 1.9; font-style: italic;">"Every plate is a canvas. We source only the rarest seasonal ingredients and treat them with the absolute respect they deserve."</p>
+          <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+            <a href="#menu" class="aurum-btn filled" id="btn-chef-menu" style="padding: 12px 28px;">Taste His Creations</a>
+            <button class="aurum-btn" id="btn-chef-reserve" onclick="openReservationModal()" style="padding: 12px 28px;">Chef's Table Booking</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       AWARDS & PRESS
+  ═══════════════════════════════════════ -->
+  <section class="aurum-awards">
+    <div class="container" style="text-align: center;">
+      <span class="section-subtitle">Global Recognition</span>
+      <h2 class="section-title" style="margin-bottom: 60px;">Awards & Mentions</h2>
+      <div style="display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; margin-bottom: 50px;">
+        <div class="award-badge">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Michelin_star.svg/1024px-Michelin_star.svg.png" style="width: 70px; filter: invert(1) sepia(1) saturate(5) hue-rotate(5deg); margin-bottom: 15px; display: block; margin-left: auto; margin-right: auto;" alt="Michelin">
+          <h3>Michelin Guide</h3>
+          <p>Three Stars ★★★</p>
+        </div>
+        <div class="award-badge">
+          <i class="fas fa-medal" style="font-size: 3.5rem; color: var(--aurum-gold); margin-bottom: 20px; display: block;"></i>
+          <h3>James Beard</h3>
+          <p>Best New Chef</p>
+        </div>
+        <div class="award-badge">
+          <i class="fas fa-trophy" style="font-size: 3.5rem; color: var(--aurum-gold); margin-bottom: 20px; display: block;"></i>
+          <h3>World's 50 Best</h3>
+          <p>Top 10 List</p>
+        </div>
+        <div class="award-badge">
+          <i class="fas fa-star" style="font-size: 3.5rem; color: var(--aurum-gold); margin-bottom: 20px; display: block;"></i>
+          <h3>Forbes Five Star</h3>
+          <p>Since 2022</p>
+        </div>
+      </div>
+      <blockquote style="color: rgba(253,251,247,0.8); font-style: italic; max-width: 700px; margin: 0 auto; line-height: 2; font-size: 1.1rem; border-left: 3px solid var(--aurum-gold); padding-left: 25px; text-align: left;">
+        "A culinary triumph. Saravala redefines the boundaries of modern fine dining." <br><strong style="color: var(--aurum-gold); font-style: normal;">— The Times of India</strong>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       HOUSE GUIDELINES & FAQ
+  ═══════════════════════════════════════ -->
+  <section class="aurum-guidelines" id="guidelines">
+    <div class="container" style="display: flex; gap: 60px; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 300px;">
+        <h2 style="font-family: var(--aurum-font-display); color: var(--aurum-gold); margin-bottom: 30px;">House Guidelines</h2>
+        <div style="background: rgba(255,255,255,0.02); padding: 35px; border-left: 3px solid var(--aurum-gold); border-radius: 8px;">
+          <h3 style="margin-bottom: 12px; color: var(--aurum-ivory);"><i class="fas fa-tshirt" style="color:var(--aurum-gold); margin-right: 10px;"></i>Dress Code</h3>
+          <p style="color: #999; font-size: 0.9rem; line-height: 1.7; margin-bottom: 25px;">We request elegant smart-casual attire. Gentlemen are required to wear collared shirts. Jackets are preferred. Athletic wear and open-toed shoes for gentlemen are strictly prohibited.</p>
+          <h3 style="margin-bottom: 12px; color: var(--aurum-ivory);"><i class="fas fa-camera" style="color:var(--aurum-gold); margin-right: 10px;"></i>Dining Etiquette</h3>
+          <p style="color: #999; font-size: 0.9rem; line-height: 1.7;">To preserve the intimacy of our dining room, we kindly ask that phone conversations be taken to the lobby. Flash photography is not permitted.</p>
+        </div>
+      </div>
+      <div style="flex: 1; min-width: 300px;">
+        <h2 style="font-family: var(--aurum-font-display); color: var(--aurum-gold); margin-bottom: 30px;">Frequently Asked Questions</h2>
+        <div class="faq-accordion">
+          <div class="faq-item" onclick="toggleFaq(this)" onkeydown="if(event.key==='Enter'||event.key===' ') { event.preventDefault(); toggleFaq(this); }" tabindex="0" id="faq-1">
+            <div class="faq-question"><span>Do you accommodate dietary restrictions?</span><i class="fas fa-chevron-down faq-icon"></i></div>
+            <div class="faq-answer">Yes, please inform us of any severe allergies at least 48 hours prior to your reservation. Our chef will craft bespoke alternatives.</div>
+          </div>
+          <div class="faq-item" onclick="toggleFaq(this)" onkeydown="if(event.key==='Enter'||event.key===' ') { event.preventDefault(); toggleFaq(this); }" tabindex="0" id="faq-2">
+            <div class="faq-question"><span>Is there a corkage fee?</span><i class="fas fa-chevron-down faq-icon"></i></div>
+            <div class="faq-answer">We allow a maximum of two 750ml bottles per table at ₹7055 per bottle.</div>
+          </div>
+          <div class="faq-item" onclick="toggleFaq(this)" onkeydown="if(event.key==='Enter'||event.key===' ') { event.preventDefault(); toggleFaq(this); }" tabindex="0" id="faq-3">
+            <div class="faq-question"><span>What is the cancellation policy?</span><i class="fas fa-chevron-down faq-icon"></i></div>
+            <div class="faq-answer">Cancellations must be made 72 hours in advance to avoid a ₹8300 per person fee.</div>
+          </div>
+          <div class="faq-item" onclick="toggleFaq(this)" onkeydown="if(event.key==='Enter'||event.key===' ') { event.preventDefault(); toggleFaq(this); }" tabindex="0" id="faq-4">
+            <div class="faq-question"><span>Is valet parking available?</span><i class="fas fa-chevron-down faq-icon"></i></div>
+            <div class="faq-answer">Yes, complimentary valet parking is available for all guests dining from 6 PM onwards.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       VIP SYNDICATE
+  ═══════════════════════════════════════ -->
+  <section class="aurum-vip" id="vip">
+    <div class="container" style="text-align: center;">
+      <i class="fas fa-gem" style="font-size: 3rem; color: var(--aurum-gold); margin-bottom: 20px; display:block;"></i>
+      <h2 style="font-family: var(--aurum-font-display); color: #fff; font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 20px;">The Saravala Syndicate</h2>
+      <p style="color: rgba(253,251,247,0.8); max-width: 600px; margin: 0 auto 40px; line-height: 1.9;">Join our exclusive, invitation-only VIP program. Members enjoy priority access to the Chef's Table, complimentary sommelier pairings, and access to the Private Cellar.</p>
+      <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+        <button class="aurum-btn filled" id="btn-vip-invite" onclick="openVipModal()" style="padding: 16px 36px;">Request Invitation</button>
+        <button class="aurum-btn" id="btn-gift-card" onclick="openGiftCardModal()" style="padding: 16px 36px;">Purchase Gift Card</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       FIND US / MAP EMBED
+  ═══════════════════════════════════════ -->
+  <section class="aurum-find-us-section" id="find-us" style="padding: 100px 0; background-color: var(--aurum-darker); border-top: 1px solid rgba(197,155,39,0.15); border-bottom: 1px solid rgba(197,155,39,0.15);">
+    <div class="container">
+      <div style="display: flex; gap: 60px; align-items: center; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 300px;">
+          <span class="section-subtitle">Visit Saravala</span>
+          <h2 class="section-title" style="text-align: left; margin-bottom: 25px;">Our Location</h2>
+          <p style="color: rgba(253,251,247,0.7); line-height: 1.9; margin-bottom: 30px;">
+            Located in the heart of the culinary district, Saravala offers an exquisite escape into modern fine dining. Visit us or contact our reservations desk to secure your table.
+          </p>
+          <div style="display: flex; flex-direction: column; gap: 20px;">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <i class="fas fa-map-marker-alt" style="color: var(--aurum-gold); font-size: 1.3rem; width: 20px; text-align: center;"></i>
+              <span style="color: rgba(253,251,247,0.8);">123 Culinary Avenue, Indiranagar, Bengaluru 560038</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <i class="fas fa-phone-alt" style="color: var(--aurum-gold); font-size: 1.3rem; width: 20px; text-align: center;"></i>
+              <a href="tel:+919520916065" style="color: var(--aurum-gold); text-decoration: underline;">+91 95209 16065</a>
+            </div>
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <i class="fas fa-envelope" style="color: var(--aurum-gold); font-size: 1.3rem; width: 20px; text-align: center;"></i>
+              <a href="mailto:concierge@saravala.com" style="color: rgba(253,251,247,0.8); text-decoration: underline;">concierge@saravala.com</a>
+            </div>
+          </div>
+        </div>
+        <div style="flex: 1; min-width: 300px; height: 350px; border-radius: 12px; overflow: hidden; border: 1px solid var(--aurum-gold); box-shadow: 0 15px 40px rgba(0,0,0,0.6);">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.001696423075!2d77.6389!3d12.9716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae16a0!2sIndiranagar%2C%20Bengaluru!5e0!3m2!1sen!2sin!4v1717600000000!5m2!1sen!2sin" style="width:100%; height:100%; border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Saravala Restaurant Location Map"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════ -->
+  <footer class="aurum-footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="aurum-logo" style="margin-bottom: 20px;">SARAVALA</div>
+          <p>A Michelin-starred, world-class fine dining destination where every plate is a masterpiece.</p>
+          <div class="footer-socials">
+            <a href="https://instagram.com/saravala" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://facebook.com/saravala" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/saravala" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Location & Hours</h3>
+          <p><i class="fas fa-map-marker-alt" style="color:var(--aurum-gold); margin-right:10px;"></i>123 Culinary Avenue, Bengaluru, KA</p>
+          <p><i class="fas fa-phone-alt" style="color:var(--aurum-gold); margin-right:10px;"></i><a href="tel:+919520916065" style="color: var(--aurum-gold); text-decoration: underline;">+91 95209 16065</a></p>
+          <p style="margin-top: 15px;"><strong style="color:var(--aurum-ivory);">Dinner Service:</strong><br>Tue - Sun: 5:00 PM – 11:00 PM</p>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="#menu">Evening Dining</a></li>
+            <li><a href="#reservations">Reservations</a></li>
+            <li><a href="#catering">Private Events</a></li>
+            <li><a href="#vip">VIP Syndicate</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Concierge</h3>
+          <p>For exclusive arrangements, yacht catering, or private sommelier services, contact our head concierge.</p>
+          <a href="mailto:concierge@saravala.com" style="color: var(--aurum-gold); text-decoration: none; border-bottom: 1px solid var(--aurum-gold); padding-bottom: 2px;">concierge@saravala.com</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 Saravala Fine Dining. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════
+       RESERVATION MODAL
+  ═══════════════════════════════════════ -->
+  <div class="modal-backdrop" id="modal-backdrop" onclick="closeAllModals()"></div>
+
+  <div class="aurum-modal" id="reservation-modal">
+    <button class="modal-close-btn" onclick="closeAllModals()" id="btn-modal-close-res">&times;</button>
+    <h2><i class="fas fa-calendar-alt" style="margin-right: 12px; font-size: 1.2rem;"></i>Reserve Your Table</h2>
+    <p style="color: #999; margin-bottom: 30px;">An unforgettable experience awaits.</p>
+    <div class="rform-group">
+      <label>Date & Time</label>
+      <div style="display: flex; gap: 12px;">
+        <input type="date" class="menu-search-input" id="modal-date" style="flex: 1;">
+        <select class="menu-search-input" id="modal-time" style="flex: 1;">
+          <option>17:00 PM</option>
+          <option>18:00 PM</option>
+          <option selected>19:00 PM</option>
+          <option>20:00 PM</option>
+          <option>21:00 PM</option>
+        </select>
+      </div>
+    </div>
+    <div class="rform-group">
+      <label>Party Size</label>
+      <select class="menu-search-input" id="modal-guests">
+        <option>1 Guest</option>
+        <option selected>2 Guests</option>
+        <option>4 Guests</option>
+        <option>6 Guests</option>
+        <option>8+ Guests (Private Dining)</option>
+      </select>
+    </div>
+    <div class="rform-group">
+      <label>Your Name</label>
+      <input type="text" class="menu-search-input" id="modal-name" placeholder="Full Name">
+    </div>
+    <div class="rform-group">
+      <label>Email Address</label>
+      <input type="email" class="menu-search-input" id="modal-email" placeholder="your@email.com" required>
+    </div>
+    <button class="aurum-btn filled" id="btn-modal-confirm" onclick="confirmModalReservation()" style="width: 100%; text-align: center; padding: 15px; margin-top: 10px; font-size: 1rem;">Confirm Reservation</button>
+  </div>
+
+  <!-- VIP Modal -->
+  <div class="aurum-modal" id="vip-modal">
+    <button class="modal-close-btn" onclick="closeAllModals()" id="btn-modal-close-vip">&times;</button>
+    <h2><i class="fas fa-gem" style="margin-right: 12px;"></i>Request VIP Invitation</h2>
+    <p style="color: #999; margin-bottom: 30px;">Membership is strictly invitation-based. Our concierge will reach you within 24 hours.</p>
+    <div class="rform-group"><label>Full Name</label><input type="text" class="menu-search-input" id="vip-name" placeholder="Your Name"></div>
+    <div class="rform-group"><label>Email Address</label><input type="email" class="menu-search-input" id="vip-email" placeholder="your@email.com"></div>
+    <div class="rform-group"><label>How did you hear about us?</label>
+      <select class="menu-search-input" id="vip-source">
+        <option>Friend or Family Referral</option>
+        <option>Press Feature</option>
+        <option>Social Media</option>
+        <option>Previous Guest</option>
+      </select>
+    </div>
+    <button class="aurum-btn filled" id="btn-vip-submit" onclick="submitVip()" style="width: 100%; text-align: center; padding: 15px; margin-top: 10px;">Submit Request</button>
+  </div>
+
+  <!-- Gift Card Modal -->
+  <div class="aurum-modal" id="giftcard-modal">
+    <button class="modal-close-btn" onclick="closeAllModals()" id="btn-modal-close-gc">&times;</button>
+    <h2><i class="fas fa-gift" style="margin-right: 12px;"></i>Purchase a Gift Card</h2>
+    <p style="color: #999; margin-bottom: 30px;">The gift of an Saravala experience is the most treasured of all.</p>
+    <div class="rform-group"><label>Select Amount</label>
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;" id="gc-amounts">
+        <button class="gc-amount-btn selected" onclick="selectGcAmount(this, 100)" id="gc-100">₹8300</button>
+        <button class="gc-amount-btn" onclick="selectGcAmount(this, 250)" id="gc-250">₹20750</button>
+        <button class="gc-amount-btn" onclick="selectGcAmount(this, 500)" id="gc-500">₹41500</button>
+        <button class="gc-amount-btn" onclick="selectGcAmount(this, 1000)" id="gc-1000">₹83,000</button>
+        <button class="gc-amount-btn" onclick="selectGcAmount(this, 2500)" id="gc-2500">₹166,500</button>
+        <button class="gc-amount-btn" onclick="selectGcAmount(this, 5000)" id="gc-5000">₹415,000</button>
+      </div>
+    </div>
+    <div class="rform-group"><label>Recipient Name</label><input type="text" class="menu-search-input" id="gc-recipient" placeholder="Recipient's Name"></div>
+    <div class="rform-group"><label>Your Email (for delivery)</label><input type="email" class="menu-search-input" id="gc-email" placeholder="your@email.com"></div>
+    <button class="aurum-btn filled" id="btn-gc-submit" onclick="submitGiftCard()" style="width: 100%; text-align: center; padding: 15px; margin-top: 10px;">Purchase Gift Card</button>
+  </div>
+
+  <!-- Dish Details Modal -->
+  <div class="aurum-modal" id="dish-modal">
+    <button class="modal-close-btn" onclick="closeAllModals()" id="btn-modal-close-dish">&times;</button>
+    <h2 id="dish-modal-title">Dish Name</h2>
+    <p id="dish-modal-price" style="color: var(--aurum-gold); font-size: 1.4rem; margin-bottom: 15px;"></p>
+    <p id="dish-modal-desc" style="color: #999; line-height: 1.8; margin-bottom: 30px;"></p>
+    <button class="aurum-btn filled" id="btn-dish-reserve" onclick="closeAllModals(); openReservationModal();" style="width: 100%; text-align: center; padding: 14px;">Reserve to Taste</button>
+  </div>
+
+  <!-- Wedding Packages Modal -->
+  <div class="aurum-modal" id="wedding-modal">
+    <button class="modal-close-btn" onclick="closeAllModals()" id="btn-modal-close-wed">&times;</button>
+    <h2><i class="fas fa-ring" style="margin-right: 12px;"></i>Wedding Packages</h2>
+    <p style="color: #999; margin-bottom: 30px;">Elevate your special day with our curated luxury tiers.</p>
+    
+    <div style="margin-bottom: 20px; padding: 20px; border: 1px solid rgba(197,155,39,0.3); border-radius: 8px; background: rgba(255,255,255,0.02);">
+      <h3 style="color: var(--aurum-gold); margin-bottom: 10px;">The Silver Tier <span style="float: right; color: var(--aurum-ivory); font-size: 1.1rem;">₹15355/pp</span></h3>
+      <p style="color: #ccc; font-size: 0.9rem;">4-Course Menu • Signature Welcome Cocktail • Standard Floral Arrangements</p>
+    </div>
+    
+    <div style="margin-bottom: 20px; padding: 20px; border: 1px solid var(--aurum-gold); border-radius: 8px; background: rgba(197,155,39,0.05); position: relative;">
+      <span style="position: absolute; top: -10px; right: 20px; background: var(--aurum-gold); color: #000; font-size: 0.7rem; font-weight: bold; padding: 2px 8px; border-radius: 4px; text-transform: uppercase;">Most Popular</span>
+      <h3 style="color: var(--aurum-gold); margin-bottom: 10px;">The Gold Tier <span style="float: right; color: var(--aurum-ivory); font-size: 1.1rem;">₹22825/pp</span></h3>
+      <p style="color: #ccc; font-size: 0.9rem;">6-Course Tasting Menu • Premium Wine Pairing • Bespoke Florals & Decor</p>
+    </div>
+
+    <div style="margin-bottom: 30px; padding: 20px; border: 1px solid rgba(197,155,39,0.3); border-radius: 8px; background: rgba(255,255,255,0.02);">
+      <h3 style="color: var(--aurum-gold); margin-bottom: 10px;">The Platinum Tier <span style="float: right; color: var(--aurum-ivory); font-size: 1.1rem;">₹37350/pp</span></h3>
+      <p style="color: #ccc; font-size: 0.9rem;">Custom 8-Course Menu by Chef Alessandro • Dom Pérignon Toast • Private Sommelier</p>
+    </div>
+
+    <button class="aurum-btn filled" onclick="closeAllModals(); openReservationModal()" style="width: 100%; text-align: center; padding: 15px;">Inquire Availability</button>
+  </div>
+
+  <!-- Corporate Quote Modal -->
+  <div class="aurum-modal" id="corporate-modal">
+    <button class="modal-close-btn" onclick="closeAllModals()" id="btn-modal-close-corp">&times;</button>
+    <h2><i class="fas fa-building" style="margin-right: 12px;"></i>Request Corporate Quote</h2>
+    <p style="color: #999; margin-bottom: 30px;">Impress your clients with a seamless, world-class corporate event.</p>
+    <div class="rform-group"><label>Company Name</label><input type="text" class="menu-search-input" id="corp-company" placeholder="e.g. Acme Corp"></div>
+    <div class="rform-group"><label>Estimated Attendees</label><input type="number" class="menu-search-input" id="corp-guests" placeholder="Number of guests"></div>
+    <div class="rform-group"><label>Event Date (Approximate)</label><input type="date" class="menu-search-input" id="corp-date"></div>
+    <div class="rform-group">
+      <label>AV & Presentation Needs</label>
+      <select class="menu-search-input" id="corp-av">
+        <option>None Required</option>
+        <option>Standard (Projector & Mic)</option>
+        <option>Full Stage Setup with Audio</option>
+      </select>
+    </div>
+    <button class="aurum-btn filled" onclick="submitCorporateQuote()" style="width: 100%; text-align: center; padding: 15px; margin-top: 10px;">Submit Request</button>
+  </div>
+
+    <!-- Private Celebrations Modal -->
+  <div class="aurum-modal" id="celebration-modal">
+    <button class="modal-close-btn" onclick="closeAllModals()" id="btn-modal-close-celeb">&times;</button>
+    <h2><i class="fas fa-birthday-cake" style="margin-right: 12px;"></i>Plan Private Celebration</h2>
+    <p style="color: #999; margin-bottom: 30px;">Curated bespoke menus and florals for your milestone events.</p>
+    <div class="rform-group"><label>Event Type</label><input type="text" class="menu-search-input" id="celeb-type" placeholder="Birthday, Proposal, Anniversary..."></div>
+    <div class="rform-group"><label>Estimated Guests</label><input type="number" class="menu-search-input" id="celeb-guests" placeholder="Number of guests"></div>
+    <div class="rform-group"><label>Preferred Date</label><input type="date" class="menu-search-input" id="celeb-date"></div>
+    <div class="rform-group">
+      <label>Floral & Decor Needs</label>
+      <select class="menu-search-input" id="celeb-decor">
+        <option>Standard Table Setup</option>
+        <option>Custom Floral Arrangements</option>
+        <option>Full Venue Decor</option>
+      </select>
+    </div>
+    <button class="aurum-btn filled" onclick="submitCelebration()" style="width: 100%; text-align: center; padding: 15px; margin-top: 10px;">Submit Inquiry</button>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="aurum-toast" class="aurum-toast"></div>
+
+  <script>
+    // ─── NAVIGATION ───
+    function toggleNav(event) {
+      if(event) event.stopPropagation();
+      const nav = document.getElementById('main-nav');
+      const icon = document.getElementById('hamburger-icon');
+      nav.classList.toggle('nav-open');
+      icon.className = nav.classList.contains('nav-open') ? 'fas fa-times' : 'fas fa-bars';
+    }
+    function closeNav() {
+      const nav = document.getElementById('main-nav');
+      const icon = document.getElementById('hamburger-icon');
+      nav.classList.remove('nav-open');
+      icon.className = 'fas fa-bars';
+    }
+
+    // Close mobile nav when clicking outside
+    document.addEventListener('click', (e) => {
+      const nav = document.getElementById('main-nav');
+      const toggleBtn = document.getElementById('nav-toggle');
+      if (nav && toggleBtn && nav.classList.contains('nav-open') && !nav.contains(e.target) && !toggleBtn.contains(e.target)) {
+        closeNav();
+      }
+    });
+
+    // Sticky header on scroll
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('main-header');
+      header.classList.toggle('header-scrolled', window.scrollY > 60);
+    });
+
+    // ─── DATE INPUT VALIDATION ───
+    document.addEventListener('DOMContentLoaded', () => {
+      const today = new Date().toISOString().split('T')[0];
+      document.querySelectorAll('input[type="date"]').forEach(el => el.min = today);
+    });
+
+    // ─── MENU TABS ───
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.menu-item').forEach(item => {
+          if (filter === 'all' || item.dataset.category === filter) {
+            item.classList.remove('hidden-item');
+          } else {
+            item.classList.add('hidden-item');
+          }
+        });
+      });
+    });
+
+    // ─── TABLE SELECTION ───
+    let selectedTable = 'T1';
+    function selectTable(name) {
+      document.querySelectorAll('.table-btn').forEach(b => b.classList.remove('selected'));
+      const buttons = Array.from(document.querySelectorAll('.table-btn'));
+      const btn = buttons.find(b => b.textContent.trim() === name || b.id === 'table-' + name.replace(/\s/g, ''));
+      if (btn) btn.classList.add('selected');
+      selectedTable = name;
+      document.getElementById('selected-table-label').textContent = 'Table ' + name;
+      document.getElementById('btn-confirm-booking').innerHTML = '<i class="fas fa-calendar-check"></i> Confirm — Table ' + name;
+    }
+
+    // ─── RESERVATION FORM SUBMIT ───
+    function submitReservation(e) {
+      e.preventDefault();
+      const name = document.getElementById('res-name').value;
+      if (!name) { showToast('Please enter your name.'); return; }
+      showToast('✅ Reservation confirmed for ' + name + ' at Table ' + selectedTable + '! Our concierge will call you shortly.');
+      e.target.reset();
+      selectTable('T1'); // Reset floor plan state
+    }
+
+    // ─── MODALS ───
+    function lockScroll() {
+      document.body.style.overflow = 'hidden';
+    }
+    function unlockScroll() {
+      document.body.style.overflow = '';
+    }
+
+    function openReservationModal() {
+      closeAllModals();
+      document.getElementById('modal-backdrop').classList.add('active');
+      document.getElementById('reservation-modal').classList.add('active');
+      lockScroll();
+    }
+    function openVipModal() {
+      closeAllModals();
+      document.getElementById('modal-backdrop').classList.add('active');
+      document.getElementById('vip-modal').classList.add('active');
+      lockScroll();
+    }
+    function openGiftCardModal() {
+      closeAllModals();
+      document.getElementById('modal-backdrop').classList.add('active');
+      document.getElementById('giftcard-modal').classList.add('active');
+      lockScroll();
+    }
+    function openWeddingModal() {
+      closeAllModals();
+      document.getElementById('modal-backdrop').classList.add('active');
+      document.getElementById('wedding-modal').classList.add('active');
+      lockScroll();
+    }
+
+    function openCelebrationModal() {
+      closeAllModals();
+      document.getElementById('modal-backdrop').classList.add('active');
+      document.getElementById('celebration-modal').classList.add('active');
+      lockScroll();
+    }
+    
+    function submitCelebration() {
+      showToast('Celebration inquiry sent! Our event planner will contact you.');
+      closeAllModals();
+    }
+
+    function openCorporateModal() {
+      closeAllModals();
+      document.getElementById('modal-backdrop').classList.add('active');
+      document.getElementById('corporate-modal').classList.add('active');
+      lockScroll();
+    }
+    function closeAllModals() {
+      document.querySelectorAll('.aurum-modal').forEach(m => m.classList.remove('active'));
+      document.getElementById('modal-backdrop').classList.remove('active');
+      unlockScroll();
+    }
+    
+    document.addEventListener('keydown', e => { 
+      if (e.key === 'Escape') closeAllModals(); 
+      
+      // Focus Trap for active modal
+      const activeModal = document.querySelector('.aurum-modal.active');
+      if (e.key === 'Tab' && activeModal) {
+        const focusable = activeModal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault(); last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault(); first.focus();
+        }
+      }
+    });
+
+    function confirmModalReservation() {
+      const name = document.getElementById('modal-name').value;
+      const guests = document.getElementById('modal-guests').value;
+      const time = document.getElementById('modal-time').value;
+      closeAllModals();
+      showToast('🎉 Reservation confirmed for ' + (name || 'Guest') + ' — ' + guests + ' at ' + time + '. See you soon!');
+    }
+
+    function submitVip() {
+      const name = document.getElementById('vip-name').value;
+      closeAllModals();
+      showToast('💎 Thank you, ' + (name || 'valued guest') + '. Our concierge will contact you within 24 hours.');
+    }
+
+    let selectedGcAmount = 100;
+    function selectGcAmount(btn, amount) {
+      document.querySelectorAll('.gc-amount-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      selectedGcAmount = amount;
+    }
+    function submitGiftCard() {
+      const recipient = document.getElementById('gc-recipient').value;
+      closeAllModals();
+      showToast('🎁 Gift Card of $' + selectedGcAmount + ' for ' + (recipient || 'your recipient') + ' is being processed! Check your email shortly.');
+    }
+
+    function submitCorporateQuote() {
+      const company = document.getElementById('corp-company').value;
+      closeAllModals();
+      showToast('🏢 Quote request received for ' + (company || 'your company') + '. Our events team will send a detailed proposal within 24 hours.');
+    }
+
+    function showDishDetails(title, price, desc) {
+      document.getElementById('dish-modal-title').textContent = title;
+      document.getElementById('dish-modal-price').textContent = price;
+      document.getElementById('dish-modal-desc').textContent = desc;
+      closeAllModals();
+      document.getElementById('modal-backdrop').classList.add('active');
+      document.getElementById('dish-modal').classList.add('active');
+    }
+
+    // ─── EXPERIENCE PLANNER ───
+    function curateEvening() {
+      const occasion = document.getElementById('planner-occasion').value;
+      const seating = document.getElementById('planner-seating').value;
+      const cuisine = document.getElementById('planner-cuisine').value;
+      showToast('✨ Your evening is curated! ' + occasion + ' at the ' + seating + ' with our ' + cuisine + '. Our concierge will prepare everything.');
+      setTimeout(() => openReservationModal(), 2500);
+    }
+
+    function selectAmbience(name) {
+      showToast('📍 ' + name + ' selected. Click "Book This Space" to proceed.');
+    }
+
+    // ─── SCROLL TO RESERVATION ───
+    function scrollToReservation(type) {
+      document.getElementById('booking-type').value = type;
+      document.getElementById('reservations').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // ─── FAQ ACCORDION ───
+    function toggleFaq(item) {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(f => f.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+
+    // ─── TOAST ───
+    function showToast(msg) {
+      const toast = document.getElementById('aurum-toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 4000);
+    }
+  </script>
+
+  <!-- Floating Action Buttons -->
+  <div class="floating-actions" style="position: fixed; bottom: 30px; left: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 900;">
+    <a href="https://wa.me/919520916065" target="_blank" rel="noopener noreferrer" class="floating-btn whatsapp-btn" id="whatsapp-float-btn" aria-label="Chat with us on WhatsApp" style="width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; cursor: pointer; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); background-color: #25D366; color: #fff; text-decoration: none;">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="tel:+919520916065" class="floating-btn call-btn" id="call-float-btn" aria-label="Call Us" style="width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; cursor: pointer; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); background-color: var(--aurum-gold); color: var(--aurum-darker); text-decoration: none;">
+      <i class="fas fa-phone"></i>
+    </a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brew Haven | Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="portal.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body { background-color: #0A0A0A; color: #fff; font-family: 'Outfit', sans-serif; overflow-x: hidden; }
+    .admin-layout { display: flex; min-height: 100vh; }
+    .admin-sidebar { width: 250px; background-color: #121212; border-right: 1px solid rgba(255,255,255,0.1); padding: 30px; display: flex; flex-direction: column; }
+    .admin-logo { font-size: 1.5rem; font-weight: 700; color: #C59B27; margin-bottom: 50px; display: flex; align-items: center; gap: 10px; }
+    .admin-nav { list-style: none; padding: 0; margin: 0; }
+    .admin-nav li { margin-bottom: 20px; }
+    .admin-nav a { color: #aaa; text-decoration: none; font-size: 1.1rem; display: flex; align-items: center; gap: 15px; transition: color 0.3s; }
+    .admin-nav a:hover, .admin-nav a.active { color: #C59B27; }
+    
+    .admin-content { flex: 1; padding: 40px; background-color: #0A0A0A; }
+    .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+    .admin-header h1 { font-size: 2.5rem; font-weight: 600; margin: 0; }
+    .admin-profile { display: flex; align-items: center; gap: 15px; }
+    .admin-profile img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #C59B27; }
+    
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-bottom: 40px; }
+    .stat-card { background: #1A1A1A; padding: 25px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.05); }
+    .stat-card h3 { color: #888; font-size: 1rem; font-weight: 400; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+    .stat-card .value { font-size: 2.5rem; font-weight: 700; color: #fff; margin-bottom: 5px; }
+    .stat-card .trend { font-size: 0.9rem; color: #4ade80; display: flex; align-items: center; gap: 5px; }
+    
+    .charts-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 25px; }
+    .chart-panel { background: #1A1A1A; padding: 25px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.05); }
+    .chart-panel h2 { font-size: 1.2rem; margin-bottom: 20px; color: #eee; font-weight: 500; }
+    
+    /* Mocked Bar Chart */
+    .mock-chart { display: flex; align-items: flex-end; gap: 15px; height: 250px; padding-top: 20px; border-bottom: 1px solid #333; margin-bottom: 15px; }
+    .bar-group { flex: 1; display: flex; justify-content: center; align-items: flex-end; gap: 5px; position: relative; }
+    .bar { width: 40%; background: #C59B27; border-radius: 4px 4px 0 0; transition: height 1s; }
+    .bar.cafe { background: #8C6239; }
+    .bar.restaurant { background: #C59B27; }
+    .bar-label { position: absolute; bottom: -25px; color: #888; font-size: 0.8rem; width: 100%; text-align: center; }
+    
+    /* Mocked Activity List */
+    .activity-list { list-style: none; padding: 0; margin: 0; }
+    .activity-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .activity-item:last-child { border-bottom: none; }
+    .activity-info { display: flex; flex-direction: column; gap: 5px; }
+    .activity-title { font-weight: 500; font-size: 0.95rem; }
+    .activity-meta { font-size: 0.8rem; color: #888; }
+    .activity-amount { font-weight: 600; color: #4ade80; }
+
+    /* Premium Admin Aesthetics */
+    body { background-color: #050505; }
+    .admin-sidebar {
+      background-color: rgba(18, 18, 18, 0.4);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-right: 1px solid rgba(255,255,255,0.05);
+    }
+    .stat-card, .chart-panel {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 28px;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .stat-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(197, 155, 39, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Ambient Glow Orbs */
+    .ambient-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(100px);
+      z-index: -1;
+      opacity: 0.3;
+      pointer-events: none;
+      animation: floatOrb 20s ease-in-out infinite alternate;
+    }
+    .ambient-orb.orb-1 { background: rgba(197, 155, 39, 0.15); width: 600px; height: 600px; top: -100px; left: 10%; }
+    .ambient-orb.orb-2 { background: rgba(140, 98, 57, 0.15); width: 500px; height: 500px; bottom: -100px; right: 10%; }
+    @keyframes floatOrb {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(5%, 10%) scale(1.1); }
+      100% { transform: translate(-5%, -10%) scale(0.9); }
+    }
+
+    @media (max-width: 768px) {
+      .admin-layout { flex-direction: column; }
+      .admin-sidebar { width: 100%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 20px; }
+      .admin-nav { display: flex; flex-wrap: wrap; gap: 15px; }
+      .admin-nav li { margin-bottom: 0; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .charts-grid { grid-template-columns: 1fr; }
+      .mock-chart { height: 180px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient-orb orb-1"></div>
+  <div class="ambient-orb orb-2"></div>
+
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="admin-logo">
+        <i class="fas fa-compass"></i> Brew Haven
+      </div>
+      <ul class="admin-nav">
+        <li><a href="javascript:void(0)" class="active"><i class="fas fa-chart-line"></i> Analytics</a></li>
+        <li><a href="javascript:void(0)"><i class="fas fa-coffee"></i> Café Orders</a></li>
+        <li><a href="javascript:void(0)"><i class="fas fa-utensils"></i> Restaurant Bookings</a></li>
+        <li><a href="javascript:void(0)"><i class="fas fa-users"></i> Shared Customers</a></li>
+        <li><a href="javascript:void(0)"><i class="fas fa-cog"></i> Settings</a></li>
+      </ul>
+      <div style="margin-top: auto;">
+        <a href="index.html" style="color: #666; text-decoration: none; font-size: 0.9rem;"><i class="fas fa-arrow-left"></i> Back to Portal</a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-content">
+      <header class="admin-header">
+        <h1>Global Analytics</h1>
+        <div class="admin-profile">
+          <span style="color: #aaa; font-size: 0.9rem;">Admin User</span>
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Admin">
+        </div>
+      </header>
+
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h2>Total Daily Revenue</h2>
+          <div class="value">₹14,250</div>
+          <div class="trend"><i class="fas fa-arrow-up"></i> 12.5% vs yesterday</div>
+        </div>
+        <div class="stat-card">
+          <h2>Active Customer Accounts</h2>
+          <div class="value">4,192</div>
+          <div class="trend"><i class="fas fa-arrow-up"></i> 3.2% vs yesterday</div>
+        </div>
+        <div class="stat-card">
+          <h2>Loyalty Points Issued</h2>
+          <div class="value">125,000</div>
+          <div class="trend" style="color: #f87171;"><i class="fas fa-arrow-down"></i> 1.1% vs yesterday</div>
+        </div>
+      </div>
+
+      <!-- Charts -->
+      <div class="charts-grid">
+        <div class="chart-panel">
+          <h2>Revenue Comparison: Café vs Restaurant</h2>
+          <div class="mock-chart">
+            <div class="bar-group">
+              <div class="bar cafe" style="height: 40%;" title="Cafe: ₹2,400"></div>
+              <div class="bar restaurant" style="height: 60%;" title="Restaurant: ₹3,600"></div>
+              <div class="bar-label">Mon</div>
+            </div>
+            <div class="bar-group">
+              <div class="bar cafe" style="height: 45%;" title="Cafe: ₹2,700"></div>
+              <div class="bar restaurant" style="height: 55%;" title="Restaurant: ₹3,300"></div>
+              <div class="bar-label">Tue</div>
+            </div>
+            <div class="bar-group">
+              <div class="bar cafe" style="height: 50%;" title="Cafe: ₹3,000"></div>
+              <div class="bar restaurant" style="height: 70%;" title="Restaurant: ₹4,200"></div>
+              <div class="bar-label">Wed</div>
+            </div>
+            <div class="bar-group">
+              <div class="bar cafe" style="height: 65%;" title="Cafe: ₹3,900"></div>
+              <div class="bar restaurant" style="height: 85%;" title="Restaurant: ₹5,100"></div>
+              <div class="bar-label">Thu</div>
+            </div>
+            <div class="bar-group">
+              <div class="bar cafe" style="height: 80%;" title="Cafe: ₹4,800"></div>
+              <div class="bar restaurant" style="height: 100%;" title="Restaurant: ₹6,000"></div>
+              <div class="bar-label">Fri</div>
+            </div>
+          </div>
+          <div style="display: flex; gap: 20px; justify-content: center; margin-top: 30px;">
+            <div style="display: flex; align-items: center; gap: 8px;"><span style="display:inline-block; width:12px; height:12px; background:#8C6239; border-radius:2px;"></span> <span style="font-size:0.9rem; color:#aaa;">The Café</span></div>
+            <div style="display: flex; align-items: center; gap: 8px;"><span style="display:inline-block; width:12px; height:12px; background:#C59B27; border-radius:2px;"></span> <span style="font-size:0.9rem; color:#aaa;">The Restaurant</span></div>
+          </div>
+        </div>
+
+        <div class="chart-panel">
+          <h2>Live Global Activity</h2>
+          <ul class="activity-list">
+            <li class="activity-item">
+              <div class="activity-info">
+                <span class="activity-title">Order #4429 - Restaurant</span>
+                <span class="activity-meta">Table 12 • 2 Guests • 1m ago</span>
+              </div>
+              <span class="activity-amount">+₹145.00</span>
+            </li>
+            <li class="activity-item">
+              <div class="activity-info">
+                <span class="activity-title">Order #9921 - Café</span>
+                <span class="activity-meta">Takeaway • Bean Bag • 3m ago</span>
+              </div>
+              <span class="activity-amount">+₹38.50</span>
+            </li>
+            <li class="activity-item">
+              <div class="activity-info">
+                <span class="activity-title">Reservation - Restaurant</span>
+                <span class="activity-meta">Friday 8:00 PM • 4 Guests</span>
+              </div>
+              <span class="activity-amount" style="color: #aaa;">Confirmed</span>
+            </li>
+            <li class="activity-item">
+              <div class="activity-info">
+                <span class="activity-title">Account Created</span>
+                <span class="activity-meta">sarah.j@example.com</span>
+              </div>
+              <span class="activity-amount" style="color: #C59B27;">+50 Pts</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Dynamic Integration from LocalStorage
+      try {
+        const points = parseInt(localStorage.getItem('brewhaven_points')) || 0;
+        const cartStr = localStorage.getItem('brewhaven_cart');
+        const cart = cartStr ? JSON.parse(cartStr) : [];
+        
+        // Populate Points
+        const pointsDisplays = document.querySelectorAll('.stat-card .value');
+        if (pointsDisplays.length >= 3) {
+          pointsDisplays[2].textContent = (125000 + points).toLocaleString();
+        }
+
+        // Add Recent Activity if items in cart
+        if (cart.length > 0) {
+          const activityList = document.querySelector('.activity-list');
+          let subtotal = 0;
+          let itemsText = [];
+          cart.forEach(item => {
+            subtotal += (item.price * item.qty);
+            itemsText.push(`${item.qty}x ${item.name}`);
+          });
+
+          const li = document.createElement('li');
+          li.className = 'activity-item';
+          li.innerHTML = `
+            <div class="activity-info">
+              <span class="activity-title">Active Cart Session</span>
+              <span class="activity-meta">${itemsText.join(', ')}</span>
+            </div>
+            <span class="activity-amount" style="color:#C59B27;">₹${subtotal.toFixed(2)} pending</span>
+          `;
+          activityList.prepend(li);
+          
+          // Update daily revenue mock
+          if (pointsDisplays.length >= 1) {
+            pointsDisplays[0].textContent = '₹' + (14250 + subtotal).toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0});
+          }
+        }
+      } catch(e) { console.error('Admin sync error:', e); }
+    });
+  </script>
+</body>
+</html>
