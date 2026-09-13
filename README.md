@@ -1,4 +1,4 @@
-# Brew_Haven_Cafe
+# Brew Haven Cafe
 
 ## Overview
 Vite/React cafe homepage. Run with: npm install then npm run dev
