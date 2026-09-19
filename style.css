@@ -9,8 +9,8 @@
   --font-cursive: 'Caveat', cursive;
 
   /* HSL Color Tokens - Light Mode */
-  --bg-primary-hsl: 36, 40%, 98%;      /* #FDFBF7 (Warm Cream) */
-  --bg-secondary-hsl: 37, 30%, 93%;    /* #F5EFE6 (Latte Beige) */
+  --bg-primary-hsl: 0, 0%, 100%;      /* #FFFFFF (Pure White) */
+  --bg-secondary-hsl: 0, 0%, 98%;     /* #FAFAFA (Light Gray) */
   --text-primary-hsl: 20, 15%, 10%;    /* #1E1A17 (Dark Charcoal) */
   --text-secondary-hsl: 25, 20%, 31%;  /* #5C4E43 (Warm Taupe) */
   --accent-hsl: 30, 43%, 39%;          /* #8C6239 (Medium Roast Brown) */
@@ -471,8 +471,8 @@ body.dark-mode .cart-badge-count {
   min-height: 600px;
   display: flex;
   align-items: center;
-  background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.55)), url('assets/hero-bg.png') no-repeat center center/cover;
-  color: #fff;
+  background: var(--bg-primary);
+  color: var(--text-primary);
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -489,7 +489,7 @@ body.dark-mode .cart-badge-count {
 }
 .floating-bean {
   position: absolute;
-  color: rgba(245, 239, 230, 0.12); /* light color on dark background */
+  color: hsla(var(--text-primary-hsl), 0.15); /* Adapts to light/dark mode */
   font-size: 2.2rem;
   filter: blur(1.5px);
   animation: beanDrift 14s infinite ease-in-out alternate;
@@ -2986,16 +2986,6 @@ footer {
   box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
 }
 
-.call-btn {
-  background-color: var(--accent);
-  color: #fff;
-}
-.call-btn:hover {
-  background-color: var(--accent-hover);
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 8px 25px rgba(140, 98, 57, 0.4);
-}
-
 .back-to-top-btn {
   background-color: var(--bg-glass-solid);
   color: var(--text-primary);
@@ -3090,12 +3080,12 @@ footer {
 }
 #hero-menu-btn {
   background-color: transparent;
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.4);
+  color: var(--text-primary);
+  border-color: var(--border-color);
 }
 #hero-menu-btn:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-color: #fff;
+  background-color: var(--border-color);
+  border-color: var(--text-primary);
 }
 
 /* Dark Mode Google Map Filter */
@@ -3375,6 +3365,23 @@ body.dark-mode .map-container iframe {
   font-size: 3rem;
   color: var(--accent);
   margin-bottom: 20px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
 }
 
 .modal-title {
@@ -3901,141 +3908,4 @@ body.dark-mode .map-container iframe {
   .row3{grid-template-columns:1fr 1fr}
 }
 
-
-/* ==========================================================================
-   PREMIUM AESTHETIC UPGRADES
-   ========================================================================== */
-
-/* 1. Curved Layouts & Advanced Glassmorphism */
-.main-header {
-  background: rgba(253, 251, 247, 0.6) !important;
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-body.dark-mode .main-header {
-  background: rgba(18, 14, 11, 0.6) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.shop-card, .menu-card, .features-card, .team-card, .about-card, .ambience-card, .testimonial-card, .sitemap-col {
-  border-radius: 28px !important;
-  background: rgba(255, 255, 255, 0.7) !important;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 0 10px 30px -10px rgba(140, 98, 57, 0.1), 0 4px 10px -5px rgba(140, 98, 57, 0.05);
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  overflow: hidden;
-}
-
-body.dark-mode .shop-card, body.dark-mode .menu-card, body.dark-mode .features-card, body.dark-mode .team-card, body.dark-mode .about-card, body.dark-mode .ambience-card, body.dark-mode .testimonial-card, body.dark-mode .sitemap-col {
-  background: rgba(255, 255, 255, 0.03) !important;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-}
-
-/* 2. Premium Hover Effects */
-.shop-card:hover, .menu-card:hover, .features-card:hover, .team-card:hover, .testimonial-card:hover {
-  transform: translateY(-12px) scale(1.02);
-  box-shadow: 0 20px 40px -10px rgba(140, 98, 57, 0.2), 0 10px 20px -5px rgba(140, 98, 57, 0.1);
-}
-
-body.dark-mode .shop-card:hover, body.dark-mode .menu-card:hover, body.dark-mode .features-card:hover, body.dark-mode .team-card:hover {
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(197, 155, 39, 0.1);
-}
-
-.shop-card img, .menu-card img, .team-card img, .about-card img, .ambience-card img {
-  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-.shop-card:hover img, .menu-card:hover img, .team-card:hover img, .about-card:hover img, .ambience-card:hover img {
-  transform: scale(1.08);
-}
-
-/* Rounded Buttons with Glow */
-.btn, .cart-toggle, .mobile-toggle, .floating-btn {
-  border-radius: 50px !important;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-primary:hover {
-  box-shadow: 0 10px 20px -5px rgba(140, 98, 57, 0.5) !important;
-  transform: translateY(-3px) scale(1.05);
-}
-
-body.dark-mode .btn-primary:hover {
-  box-shadow: 0 10px 20px -5px rgba(197, 155, 39, 0.4) !important;
-}
-
-/* 3. Upgraded Reveal Animations with Blur */
-.reveal, .reveal-left, .reveal-right, .reveal-scale {
-  filter: blur(12px);
-  will-change: opacity, transform, filter;
-  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 1.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-.reveal.reveal-active, .reveal-left.reveal-active, .reveal-right.reveal-active, .reveal-scale.reveal-active {
-  filter: blur(0);
-}
-
-.reveal-scale {
-  opacity: 0;
-  transform: scale(0.9);
-}
-.reveal-scale.reveal-active {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* 4. Ambient Glowing Background Orbs */
-.ambient-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  z-index: -1;
-  opacity: 0.4;
-  pointer-events: none;
-  animation: floatOrb 20s ease-in-out infinite alternate;
-}
-
-@keyframes floatOrb {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(5%, 10%) scale(1.1); }
-  100% { transform: translate(-5%, -10%) scale(0.9); }
-}
-
-body.dark-mode .ambient-orb.orb-1 { background: rgba(197, 155, 39, 0.15); }
-body.dark-mode .ambient-orb.orb-2 { background: rgba(140, 98, 57, 0.15); }
-.ambient-orb.orb-1 { background: rgba(226, 184, 66, 0.2); width: 600px; height: 600px; top: -100px; left: -100px; }
-.ambient-orb.orb-2 { background: rgba(140, 98, 57, 0.1); width: 500px; height: 500px; bottom: -100px; right: -100px; }
-
-/* 5. Flowing SVG Waves */
-.wave-divider {
-  position: relative;
-  width: 100%;
-  height: 100px;
-  overflow: hidden;
-  line-height: 0;
-  z-index: 1;
-}
-
-.wave-divider svg {
-  position: absolute;
-  display: block;
-  width: calc(100% + 1.3px);
-  height: 100px;
-}
-
-.wave-divider .shape-fill {
-  fill: var(--bg-primary);
-  transition: fill 0.4s ease;
-}
-
-/* Smooth Parallax classes */
-.parallax-bg {
-  will-change: transform;
-}
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }

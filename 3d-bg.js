@@ -8,11 +8,12 @@
   'use strict';
 
   // ─── CONFIG ────────────────────────────────────────────────
+  const isMobile = window.innerWidth < 768 || (window.matchMedia && window.matchMedia("(pointer: coarse)").matches);
   const CONFIG = {
-    particleCount: 8000,
-    starCount: 3000,
-    beanCount: 18,
-    ringCount: 4,
+    particleCount: isMobile ? 2000 : 8000,
+    starCount: isMobile ? 1000 : 3000,
+    beanCount: isMobile ? 8 : 18,
+    ringCount: isMobile ? 2 : 4,
     cafeColor: 0xC8873A,    // warm golden
     restColor: 0x5B8CCC,    // cool blue
     goldColor: 0xC8A96A,
@@ -31,6 +32,10 @@
 
   // ─── INIT ──────────────────────────────────────────────────
   function init() {
+    if (typeof THREE === 'undefined') {
+      console.warn('BrewVerse 3D Background: Three.js failed to load.');
+      return;
+    }
     // Create canvas
     const canvas = document.createElement('canvas');
     canvas.id = 'three-bg';
